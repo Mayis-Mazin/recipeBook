@@ -1,7 +1,3 @@
-export class Ingrediant{
-
-
-  constructor(public name:string,public amount:number) {
-
-  }
+export class Ingrediant {
+  constructor(public name: string, public amount: number) {}
 }
