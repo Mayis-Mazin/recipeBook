@@ -1,7 +1,7 @@
 <nav class="nav-bar navbar-default   ">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand"routerLink="/">hi </a>
+      <a class="navbar-brand"routerLink="/">Recipe Book </a>
     </div>
 
 
@@ -9,21 +9,21 @@
 
       <ul class="nav navbar-nav">
         <li  routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"
-         ><a [routerLink]="'shopping-list'" (click)="onSelect('shopping-list')">
+         ><a [routerLink]="'shopping-list'"  >
           Shopping list
         </a> </li>
       <li  routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"
-      ><a [routerLink]="'recipes'" (click)="onSelect('recipes')">
+      ><a [routerLink]="'recipes'"  >
           Recipes
         </a>
       </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown" appDropdown>
-          <a href="#" class="dropdown-toggle"  role="'botton">Manage <span class="caret"></span> </a>
+          <a style="cursor: pointer;"  class="dropdown-toggle"  role="'botton">Manage <span class="caret"></span> </a>
           <ul class="dropdown-menu">
-            <li><a href="#">Svae dta</a></li>
-            <li><a href="#">fetch dta</a></li>
+            <li><a style="cursor: pointer;" >Svae data</a></li>
+            <li><a style="cursor: pointer;" >fetch data</a></li>
           </ul>
         </li>
 
