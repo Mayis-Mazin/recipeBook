@@ -23,4 +23,12 @@ export class ShoppingListService {
     this.ingrediants.push(...ingrediants);
     this.ingrediantChanged.next(this.ingrediants.slice());
   }
+  updateIngerdient(index:number,newIngredient:Ingrediant){
+    this.ingrediants[index] = newIngredient;
+    this.ingrediantChanged.next(this.ingrediants.slice())
+  }
+  deleteIngerdient(index:number){
+    this.ingrediants.splice(index,1);
+    this.ingrediantChanged.next(this.ingrediants.slice());
+  }
 }
