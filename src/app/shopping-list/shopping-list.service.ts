@@ -3,6 +3,7 @@ import { Ingrediant } from './../shared/ingredient.model';
 
 export class ShoppingListService {
   ingrediantChanged = new Subject<Ingrediant[]>();
+  startedEditing=new Subject<number>();
   private ingrediants: Ingrediant[] = [
     new Ingrediant('Apple', 5),
     new Ingrediant('Tomatoes', 10),
