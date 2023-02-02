@@ -1,53 +1,58 @@
+import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs/Subject';
 
-import { ShoppingListService } from './../shopping-list/shopping-list.service';
-import { Ingrediant } from './../shared/ingredient.model';
-import {    Injectable } from '@angular/core';
 import { Recipe } from './recipe.model';
+import { Ingredient } from '../shared/ingredient.model';
+import { ShoppingListService } from '../shopping-list/shopping-list.service';
 
 @Injectable()
 export class RecipeService {
+  recipesChanged = new Subject<Recipe[]>();
 
   private recipes: Recipe[] = [
     new Recipe(
-
-      'Recipe 1',
-      'simple Descreption',
-      'https://ichef.bbci.co.uk/food/ic/food_16x9_1600/recipes/british_shakshuka_26737_16x9.jpg',
-      [new Ingrediant('meet', 4), new Ingrediant('French Fries', 24)]
-    ),
-    new Recipe(
-
-      'Rec 2',
-      'this is what we have',
-      'https://ichef.bbci.co.uk/food/ic/food_16x9_1600/recipes/british_shakshuka_26737_16x9.jpg',
-      [new Ingrediant('meet', 1), new Ingrediant('French Fries', 34)]
-    ),
+      'Tasty Schnitzel',
+      'A super-tasty Schnitzel - just awesome!',
+      'https://upload.wikimedia.org/wikipedia/commons/7/72/Schnitzel.JPG',
+      [
+        new Ingredient('Meat', 1),
+        new Ingredient('French Fries', 20)
+      ]),
+    new Recipe('Big Fat Burger',
+      'What else you need to say?',
+      'https://upload.wikimedia.org/wikipedia/commons/b/be/Burger_King_Angus_Bacon_%26_Cheese_Steak_Burger.jpg',
+      [
+        new Ingredient('Buns', 2),
+        new Ingredient('Meat', 1)
+      ])
   ];
-  constructor(private sLServace: ShoppingListService) {}
+
+  constructor(private slService: ShoppingListService) {}
 
   getRecipes() {
-    //slice: return a new array which is an ecxact copy of this array
     return this.recipes.slice();
   }
 
-  addIngrediantsToShoppingList(ingrediants: Ingrediant[]) {
-    this.sLServace.addIngerdents(ingrediants);
-  }
-
   getRecipe(index: number) {
-
-  return this.recipes[index]
+    return this.recipes[index];
   }
 
-  updateRecipe(  description: string, name:string, imagPath:string, ingrediant:Ingrediant[]) {
-    const recipe = this.recipes.find((r) => {
-      // return r.id === id;
-    });
-    if (recipe) {
-      recipe.description = description;
-      recipe.name = name;
-      recipe.imagPath = imagPath;
-      recipe.ingrediants = ingrediant;
-    }
+  addIngredientsToShoppingList(ingredients: Ingredient[]) {
+    this.slService.addIngredients(ingredients);
+  }
+
+  addRecipe(recipe: Recipe) {
+    this.recipes.push(recipe);
+    this.recipesChanged.next(this.recipes.slice());
+  }
+
+  updateRecipe(index: number, newRecipe: Recipe) {
+    this.recipes[index] = newRecipe;
+    this.recipesChanged.next(this.recipes.slice());
+  }
+
+  deleteRecipe(index: number) {
+    this.recipes.splice(index, 1);
+    this.recipesChanged.next(this.recipes.slice());
   }
 }
