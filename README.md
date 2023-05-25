@@ -2,7 +2,7 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.4.
 
-##you can visit the webApp:https://recipebook-6d83c.web.app/auth
+## you can visit the web App: https://recipebook-6d83c.web.app/auth
 
 ## Development server
 
